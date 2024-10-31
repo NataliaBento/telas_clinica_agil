@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'meus_agendamentos.dart';
-import 'confirmacao_cancelamento.dart';
+import 'meus_Agendamentos.dart';
+import 'pagina_inicial.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,24 +16,64 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      debugShowCheckedModeBanner: false,  // Remove o selo DEBUG
+      debugShowCheckedModeBanner: false,
       home: const ConfirmationPage(),
     );
   }
 }
 
-class ConfirmationPage extends StatelessWidget {
+class ConfirmationPage extends StatefulWidget {
   const ConfirmationPage({super.key});
+
+  @override
+  State<ConfirmationPage> createState() => _ConfirmationPageState();
+}
+
+class _ConfirmationPageState extends State<ConfirmationPage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF222083),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF222083),
-        title: const Text(
-          "Confirmação de Agendamento",
-          style: TextStyle(color: Colors.white),  // Define o título como branco
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                iconSize: 20,
+                icon: const Icon(Icons.arrow_back, color: Color(0xFF222083)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            const Expanded(
+              child: Center(child: Placeholder(fallbackHeight: 40, fallbackWidth: 100)),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(icon: const Icon(Icons.notifications), color: Colors.white, onPressed: () {}),
+                IconButton(icon: const Icon(Icons.settings), color: Colors.white, onPressed: () {}),
+              ],
+            ),
+          ],
         ),
       ),
       body: Center(
@@ -45,35 +85,18 @@ class ConfirmationPage extends StatelessWidget {
               Container(
                 width: 300,
                 padding: const EdgeInsets.all(32),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                ),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
-                      Icons.check_circle,
-                      color: Color(0xFF01C3CC),
-                      size: 100,
-                    ),
+                    const Icon(Icons.check_circle, color: Color(0xFF01C3CC), size: 100),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Agendamento concluído!',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
+                    const Text('Agendamento concluído!', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black)),
                     const SizedBox(height: 8),
                     const Text(
                       'Seu agendamento foi concluído com sucesso, você receberá um lembrete de agendamento próximo à data registrada.',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black54,
-                      ),
+                      style: TextStyle(fontSize: 16, color: Colors.black54),
                     ),
                   ],
                 ),
@@ -81,71 +104,41 @@ class ConfirmationPage extends StatelessWidget {
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CancelConfirmationPage()),
-                  );
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PaginaInicial()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                 ),
-                child: const Text(
-                  'Página Inicial',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
+                child: const Text('Página Inicial', style: TextStyle(fontSize: 18, color: Colors.black)),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const AppointmentDetailsPage()),
-                  );
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const AppointmentListPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                 ),
-                child: const Text(
-                  'Editar Agendamento',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
+                child: const Text('Editar Agendamento', style: TextStyle(fontSize: 18, color: Colors.black)),
               ),
             ],
           ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Início',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_membership),
-            label: 'Carteirinha',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
+          BottomNavigationBarItem(icon: Icon(Icons.card_membership), label: 'Carteirinha'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
         ],
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xFF01C3CC),
         backgroundColor: Colors.white,
+        onTap: _onItemTapped,
       ),
     );
   }

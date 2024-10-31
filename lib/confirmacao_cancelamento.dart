@@ -1,38 +1,64 @@
 import 'package:flutter/material.dart';
+import 'pagina_inicial.dart'; // Importando a página inicial
 
-class CancelConfirmationPage extends StatelessWidget {
+class CancelConfirmationPage extends StatefulWidget {
   const CancelConfirmationPage({super.key});
+
+  @override
+  State<CancelConfirmationPage> createState() => _CancelConfirmationPageState();
+}
+
+class _CancelConfirmationPageState extends State<CancelConfirmationPage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF222083), // Fundo igual ao do main
+      backgroundColor: const Color(0xFF222083),
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Remove a seta padrão do AppBar
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF222083),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Substitui a seta padrão por um botão de seta personalizado com borda circular branca
             Container(
-              width: 36, // Ajuste do tamanho do botão
+              width: 36,
               height: 36,
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
               child: IconButton(
-                iconSize: 20, // Tamanho do ícone
+                iconSize: 20,
                 icon: const Icon(Icons.arrow_back, color: Color(0xFF222083)),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
             ),
-            const SizedBox(width: 8), // Espaçamento entre a seta e o título
-            const Text(
-              "Confirmação de Cancelamento",
-              style: TextStyle(color: Colors.white),
+            const Expanded(
+              child: Center(child: Placeholder(fallbackHeight: 40, fallbackWidth: 100)),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.notifications),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(Icons.settings),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+              ],
             ),
           ],
         ),
@@ -53,17 +79,12 @@ class CancelConfirmationPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
-                      Icons.cancel,
-                      color: Colors.red, // Ícone em vermelho
-                      size: 100,
-                    ),
+                    const Icon(Icons.cancel, color: Colors.red, size: 100),
                     const SizedBox(height: 16),
                     const Text(
                       'Agendamento Cancelado!',
                       style: TextStyle(
                         fontSize: 19,
-                        height: 2,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -83,11 +104,14 @@ class CancelConfirmationPage extends StatelessWidget {
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PaginaInicial()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
                   ),
@@ -105,7 +129,7 @@ class CancelConfirmationPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Início',
@@ -119,8 +143,10 @@ class CancelConfirmationPage extends StatelessWidget {
             label: 'Perfil',
           ),
         ],
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xFF01C3CC),
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
         backgroundColor: Colors.white,
       ),
     );

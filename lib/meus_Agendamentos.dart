@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'detalhes_do_agendamento.dart';
 
-class AppointmentDetailsPage extends StatefulWidget {
-  const AppointmentDetailsPage({super.key});
+class AppointmentListPage extends StatefulWidget {
+  const AppointmentListPage({super.key});
 
   @override
-  State<AppointmentDetailsPage> createState() => _AppointmentDetailsPageState();
+  State<AppointmentListPage> createState() => _AppointmentListPageState();
 }
 
-class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
+class _AppointmentListPageState extends State<AppointmentListPage> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -19,7 +20,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
   void _navigateToDetailedPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const DetailedAppointmentPage()),
+      MaterialPageRoute(builder: (context) => const AppointmentDetailsPage()), // Corrigido para usar a classe correta
     );
   }
 
@@ -27,35 +28,28 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Remove a seta padrão do AppBar
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF222083),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Substituindo o botão de seta com borda circular branca
             Container(
-              width: 36, // Define a largura do botão
-              height: 36, // Define a altura do botão
+              width: 36,
+              height: 36,
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
               child: IconButton(
-                iconSize: 20, // Define o tamanho do ícone dentro do botão
+                iconSize: 20,
                 icon: const Icon(Icons.arrow_back, color: Color(0xFF222083)),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
             ),
-
-            Expanded(
-              child: Center(
-                child: Placeholder(
-                  fallbackHeight: 40,
-                  fallbackWidth: 100,
-                ),
-              ),
+            const Expanded(
+              child: Center(child: Placeholder(fallbackHeight: 40, fallbackWidth: 100)),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -92,6 +86,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
             ),
             const SizedBox(height: 24),
 
+            // inicio do primeiro card
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -115,7 +110,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton.icon(
-                        onPressed: _navigateToDetailedPage,
+                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
                         icon: const Icon(Icons.arrow_forward, color: Colors.blue),
                         label: const Text(
                           'Detalhes',
@@ -127,8 +122,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            // Segundo Card
+            // inicio do primeiro card
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -139,20 +133,20 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildDetailRow(Icons.calendar_today, "Data", "28/12/2024"),
+                    buildDetailRow(Icons.calendar_today, "Data", "27/12/2024"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.access_time, "Horário", "10:00"),
+                    buildDetailRow(Icons.access_time, "Horário", "08:00"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.person, "Paciente", "Ana Souza"),
+                    buildDetailRow(Icons.person, "Paciente", "João Silva"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.medical_services, "Médico", "Dr. Carlos Mendes"),
+                    buildDetailRow(Icons.medical_services, "Médico", "Dra. Maria Fernandes"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.location_on, "Localização", "Clínica Ágil - Unidade Sul"),
+                    buildDetailRow(Icons.location_on, "Localização", "Clínica Ágil - Centro"),
                     const SizedBox(height: 16),
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton.icon(
-                        onPressed: _navigateToDetailedPage,
+                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
                         icon: const Icon(Icons.arrow_forward, color: Colors.blue),
                         label: const Text(
                           'Detalhes',
@@ -164,8 +158,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            // Terceiro Card
+            // inicio do primeiro card
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -176,20 +169,56 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildDetailRow(Icons.calendar_today, "Data", "29/12/2024"),
+                    buildDetailRow(Icons.calendar_today, "Data", "27/12/2024"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.access_time, "Horário", "14:00"),
+                    buildDetailRow(Icons.access_time, "Horário", "08:00"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.person, "Paciente", "Carlos Lima"),
+                    buildDetailRow(Icons.person, "Paciente", "João Silva"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.medical_services, "Médico", "Dra. Fernanda Silva"),
+                    buildDetailRow(Icons.medical_services, "Médico", "Dra. Maria Fernandes"),
                     const SizedBox(height: 16),
-                    buildDetailRow(Icons.location_on, "Localização", "Clínica Ágil - Unidade Norte"),
+                    buildDetailRow(Icons.location_on, "Localização", "Clínica Ágil - Centro"),
                     const SizedBox(height: 16),
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton.icon(
-                        onPressed: _navigateToDetailedPage,
+                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
+                        icon: const Icon(Icons.arrow_forward, color: Colors.blue),
+                        label: const Text(
+                          'Detalhes',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // inicio do primeiro card
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildDetailRow(Icons.calendar_today, "Data", "27/12/2024"),
+                    const SizedBox(height: 16),
+                    buildDetailRow(Icons.access_time, "Horário", "08:00"),
+                    const SizedBox(height: 16),
+                    buildDetailRow(Icons.person, "Paciente", "João Silva"),
+                    const SizedBox(height: 16),
+                    buildDetailRow(Icons.medical_services, "Médico", "Dra. Maria Fernandes"),
+                    const SizedBox(height: 16),
+                    buildDetailRow(Icons.location_on, "Localização", "Clínica Ágil - Centro"),
+                    const SizedBox(height: 16),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton.icon(
+                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
                         icon: const Icon(Icons.arrow_forward, color: Colors.blue),
                         label: const Text(
                           'Detalhes',
@@ -250,30 +279,6 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
           ),
         ),
       ],
-    );
-  }
-}
-
-// Página de "Detalhes de Agendamento"
-class DetailedAppointmentPage extends StatelessWidget {
-  const DetailedAppointmentPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Detalhes do Agendamento"),
-        backgroundColor: const Color(0xFF222083),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: const Text(
-            "Informações detalhadas do agendamento.",
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-      ),
     );
   }
 }
