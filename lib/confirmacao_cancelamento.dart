@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pagina_inicial.dart'; // Importando a página inicial
+import 'pagina_inicial.dart';
+import 'carteirinha.dart'; // Importando a tela de carteirinha
 
 class CancelConfirmationPage extends StatefulWidget {
   const CancelConfirmationPage({super.key});
@@ -15,6 +16,18 @@ class _CancelConfirmationPageState extends State<CancelConfirmationPage> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const PaginaInicial()),
+      );
+    } else if (index == 1) { // Redireciona para CarteirinhaPage
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CarteirinhaPage()),
+      );
+    }
   }
 
   @override

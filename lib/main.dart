@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
 import 'pagina_inicial.dart';
 import 'splash_screen.dart';
-
+import 'carteirinha.dart'; // Importando a tela de carteirinha
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +38,18 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const PaginaInicial()),
+      );
+    } else if (index == 1) { // Redireciona para CarteirinhaPage
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CarteirinhaPage()),
+      );
+    }
   }
 
   @override
@@ -53,7 +65,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
             Container(
               width: 36,
               height: 36,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'detalhes_do_agendamento.dart';
+import 'pagina_inicial.dart';
+import 'carteirinha.dart'; // Importando a tela de carteirinha
 
 class AppointmentListPage extends StatefulWidget {
   const AppointmentListPage({super.key});
@@ -15,12 +17,24 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const PaginaInicial()),
+      );
+    } else if (index == 1) { // Redireciona para CarteirinhaPage
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CarteirinhaPage()),
+      );
+    }
   }
 
   void _navigateToDetailedPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const AppointmentDetailsPage()), // Corrigido para usar a classe correta
+      MaterialPageRoute(builder: (context) => const AppointmentDetailsPage()),
     );
   }
 
@@ -51,11 +65,11 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
             const Expanded(
               child: Center(
                 child: Image(
-                    image: AssetImage('assets/images/foto_de_menu_suspenso.png'),
+                  image: AssetImage('assets/images/foto_de_menu_suspenso.png'),
                   height: 40,
                 ),
               ),
-              ),
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -90,8 +104,6 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
               ),
             ),
             const SizedBox(height: 24),
-
-            // inicio do primeiro card
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -115,7 +127,7 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton.icon(
-                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
+                        onPressed: _navigateToDetailedPage,
                         icon: const Icon(Icons.arrow_forward, color: Colors.blue),
                         label: const Text(
                           'Detalhes',
@@ -127,7 +139,6 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                 ),
               ),
             ),
-            // inicio do primeiro card
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -151,79 +162,7 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton.icon(
-                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
-                        icon: const Icon(Icons.arrow_forward, color: Colors.blue),
-                        label: const Text(
-                          'Detalhes',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // inicio do primeiro card
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    buildDetailRow(Icons.calendar_today, "Data", "27/12/2024"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.access_time, "Horário", "08:00"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.person, "Paciente", "João Silva"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.medical_services, "Médico", "Dra. Maria Fernandes"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.location_on, "Localização", "Clínica Ágil - Centro"),
-                    const SizedBox(height: 16),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton.icon(
-                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
-                        icon: const Icon(Icons.arrow_forward, color: Colors.blue),
-                        label: const Text(
-                          'Detalhes',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // inicio do primeiro card
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    buildDetailRow(Icons.calendar_today, "Data", "27/12/2024"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.access_time, "Horário", "08:00"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.person, "Paciente", "João Silva"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.medical_services, "Médico", "Dra. Maria Fernandes"),
-                    const SizedBox(height: 16),
-                    buildDetailRow(Icons.location_on, "Localização", "Clínica Ágil - Centro"),
-                    const SizedBox(height: 16),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton.icon(
-                        onPressed: _navigateToDetailedPage, // Navega para a nova página de detalhes
+                        onPressed: _navigateToDetailedPage,
                         icon: const Icon(Icons.arrow_forward, color: Colors.blue),
                         label: const Text(
                           'Detalhes',

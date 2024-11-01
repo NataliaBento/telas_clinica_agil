@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'confirmacao_cancelamento.dart'; 
+import 'confirmacao_cancelamento.dart';
+import 'pagina_inicial.dart';
+import 'carteirinha.dart'; // Importa a tela de carteirinha
 
 class AppointmentDetailsPage extends StatefulWidget {
   const AppointmentDetailsPage({super.key});
@@ -16,6 +18,18 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const PaginaInicial()),
+      );
+    } else if (index == 1) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CarteirinhaPage()),
+      );
+    }
   }
 
   // Função para gerar número aleatório para o protocolo
@@ -52,7 +66,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
             const Expanded(
               child: Center(
                 child: Image(
-                    image: AssetImage('assets/images/foto_de_menu_suspenso.png'),
+                  image: AssetImage('assets/images/foto_de_menu_suspenso.png'),
                 ),
               ),
             ),
@@ -222,7 +236,6 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              // Navega para a página de confirmação de cancelamento
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => const CancelConfirmationPage()),

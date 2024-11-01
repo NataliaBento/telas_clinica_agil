@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
-import 'main.dart'; // Certifique-se de que 'ConfirmationPage' está importada aqui.
+import 'main.dart';
+import 'carteirinha.dart';
 
 class PaginaInicial extends StatefulWidget {
   const PaginaInicial({super.key});
@@ -16,7 +17,15 @@ class _PaginaInicialState extends State<PaginaInicial> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 1) { // Índice 1 é o "Carteirinha"
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CarteirinhaPage()),
+      );
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
