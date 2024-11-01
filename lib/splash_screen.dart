@@ -45,25 +45,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     return Scaffold(
       backgroundColor: const Color(0xFF222083), // Cor de fundo
       body: Center(
-        child: FadeTransition(
-          opacity: _animation,
+        child: ScaleTransition(
+          scale: _animation,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(
-                Icons.local_hospital,
-                size: 80,
-                color: Colors.white,
+            children: [
+              Image.asset(
+                'assets/images/logo_de_entrada.png',
+                width: MediaQuery.of(context).size.width * 0.9, // Tamanho inicial
+                height: MediaQuery.of(context).size.width * 0.9, // Tamanho inicial
+                fit: BoxFit.contain,
               ),
-              SizedBox(height: 16),
-              Text(
-                'Clínica Ágil',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
+              const SizedBox(height: 16),
             ],
           ),
         ),

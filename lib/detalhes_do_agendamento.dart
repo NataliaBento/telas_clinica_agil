@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'confirmacao_cancelamento.dart'; // Certifique-se de importar o arquivo corretamente
+import 'confirmacao_cancelamento.dart'; 
 
 class AppointmentDetailsPage extends StatefulWidget {
   const AppointmentDetailsPage({super.key});
@@ -50,7 +50,11 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
               ),
             ),
             const Expanded(
-              child: Center(child: Placeholder(fallbackHeight: 40, fallbackWidth: 100)),
+              child: Center(
+                child: Image(
+                    image: AssetImage('assets/images/foto_de_menu_suspenso.png'),
+                ),
+              ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,

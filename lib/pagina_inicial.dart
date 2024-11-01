@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
+import 'main.dart'; // Certifique-se de que 'ConfirmationPage' está importada aqui.
 
 class PaginaInicial extends StatefulWidget {
   const PaginaInicial({super.key});
@@ -31,29 +32,39 @@ class _PaginaInicialState extends State<PaginaInicial> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.notifications),
-                        color: Colors.white,
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.settings),
-                        color: Colors.white,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      'assets/images/foto_de_menu_suspenso.png',
+                      height: 40,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.notifications),
+                          color: Colors.white,
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.settings),
+                          color: Colors.white,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
-                Center(
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('assets/user_profile.jpg'), // aqui tem que substituir com alguma imagem
+                const Center(
+                  child: Text(
+                    'Nome do Usuário',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -77,7 +88,18 @@ class _PaginaInicialState extends State<PaginaInicial> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  buildCard('Agendar Consulta', Icons.event_note),
+                  buildCard(
+                    'Agendar Consulta',
+                    Icons.event_note,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ConfirmationPage(),
+                        ),
+                      );
+                    },
+                  ),
                   buildCard(
                     'Meus Agendamentos',
                     Icons.calendar_today,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
 import 'pagina_inicial.dart';
 import 'splash_screen.dart';
-import 'tela_de_login.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -66,7 +66,12 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
               ),
             ),
             const Expanded(
-              child: Center(child: Placeholder(fallbackHeight: 40, fallbackWidth: 100)),
+              child: Center(
+                child: Image(
+                  image: AssetImage('assets/images/foto_de_menu_suspenso.png'),
+                  height: 40,
+                ),
+              ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,

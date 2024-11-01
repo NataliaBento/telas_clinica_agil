@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'pagina_inicial.dart';
-import 'cadastro.dart'; // Importa o arquivo de cadastro
 
-class TelaDeLogin extends StatefulWidget {
-  const TelaDeLogin({super.key});
+class TelaDeCadastro extends StatefulWidget {
+  const TelaDeCadastro({super.key});
 
   @override
-  State<TelaDeLogin> createState() => _TelaDeLoginState();
+  State<TelaDeCadastro> createState() => _TelaDeCadastroState();
 }
 
-class _TelaDeLoginState extends State<TelaDeLogin> {
+class _TelaDeCadastroState extends State<TelaDeCadastro> {
   bool _isPasswordVisible = false;
 
   void _togglePasswordVisibility() {
@@ -22,26 +20,76 @@ class _TelaDeLoginState extends State<TelaDeLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF222083),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                iconSize: 20,
+                icon: const Icon(Icons.arrow_back, color: Color(0xFF222083)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            Image.asset(
+              'assets/images/foto_de_menu_suspenso.png',
+              height: 40, // Ajuste a altura conforme necessário
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.notifications),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(Icons.settings),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 60),
-            Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.2,
-              child: Image.asset(
-                'assets/images/foto_de_login.png',
-                fit: BoxFit.cover,
+            const SizedBox(height: 24),
+            // Campo de Nome
+            const Text(
+              'Nome',
+              style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Insira seu nome',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
-            // Campo de Usuário (Email)
+            // Campo de Email
             const Text(
-              'Usuário',
+              'Email',
               style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -83,15 +131,12 @@ class _TelaDeLoginState extends State<TelaDeLogin> {
             ),
             const SizedBox(height: 32),
 
-            // Botão de "Entrar"
+            // Botão de "Cadastrar"
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PaginaInicial()),
-                  );
+                  // Lógica de cadastro
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF222083),
@@ -101,46 +146,10 @@ class _TelaDeLoginState extends State<TelaDeLogin> {
                   ),
                 ),
                 child: const Text(
-                  'Entrar',
+                  'Cadastrar',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-
-            // Links para "Esqueci minha senha" e "Criar conta"
-            Column(
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Esqueci minha senha',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Ainda não possui uma conta? ',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const TelaDeCadastro()),
-                        );
-                      },
-                      child: const Text(
-                        'Crie aqui',
-                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
             ),
           ],
         ),

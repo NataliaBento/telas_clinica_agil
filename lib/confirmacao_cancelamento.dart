@@ -43,7 +43,11 @@ class _CancelConfirmationPageState extends State<CancelConfirmationPage> {
               ),
             ),
             const Expanded(
-              child: Center(child: Placeholder(fallbackHeight: 40, fallbackWidth: 100)),
+              child: Center(
+                child: Image(
+                  image: AssetImage('assets/images/foto_de_menu_suspenso.png'),
+                ),
+              ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
