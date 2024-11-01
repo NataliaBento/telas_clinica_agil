@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
 import 'pagina_inicial.dart';
+import 'splash_screen.dart';
+import 'tela_de_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Confirmação de Agendamento',
+      title: 'Aplicativo de Agendamento',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const ConfirmationPage(),
+      home: const SplashScreen(), // Inicia com a SplashScreen
     );
   }
 }
