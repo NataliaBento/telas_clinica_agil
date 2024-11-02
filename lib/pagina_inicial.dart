@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
 import 'main.dart';
 import 'carteirinha.dart';
+import 'especialidades.dart'; // Importando a tela de especialidades
 
 class PaginaInicial extends StatefulWidget {
   const PaginaInicial({super.key});
@@ -25,7 +26,6 @@ class _PaginaInicialState extends State<PaginaInicial> {
       );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ConfirmationPage(),
+                          builder: (context) => const TelaEspecialidades(),
                         ),
                       );
                     },

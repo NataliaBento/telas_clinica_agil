@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'confirmacao_de_cadastro.dart';
+import 'tela_de_login.dart';
 
 class TelaDeCadastro extends StatefulWidget {
   const TelaDeCadastro({super.key});
@@ -200,15 +202,33 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
                 ),
               ),
             ),
-            const SizedBox(height: 4),
             const SizedBox(height: 32),
+
+            // Link para Login
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TelaDeLogin()),
+                  );
+                },
+                child: const Text(
+                  'Já possui uma conta? Entre aqui.',
+                  style: TextStyle(color: Color(0xFF222083), fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
 
             // Botão de "Cadastrar"
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Lógica de cadastro
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ConfirmacaoDeCadastroPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF222083),
