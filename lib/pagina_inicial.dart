@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
-import 'main.dart';
 import 'carteirinha.dart';
 import 'especialidades.dart';
 
