@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pagina_inicial.dart';
 import 'carteirinha.dart';
+import 'calendario.dart'; // Import da nova página de calendário
 
 class EscolhaDoMedico extends StatefulWidget {
   final String especialidade;
@@ -242,11 +243,14 @@ class _EscolhaDoMedicoState extends State<EscolhaDoMedico> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Lógica para selecionar o médico
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CalendarioPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF222083),
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12), // Padding horizontal ajustado para 40
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
                   ),
