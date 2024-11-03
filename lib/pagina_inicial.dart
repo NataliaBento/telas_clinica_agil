@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
 import 'main.dart';
 import 'carteirinha.dart';
-import 'especialidades.dart'; // Importando a tela de especialidades
+import 'especialidades.dart';
 
 class PaginaInicial extends StatefulWidget {
   const PaginaInicial({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pagina_inicial.dart';
-import 'carteirinha.dart'; // Importando a tela de carteirinha
+import 'carteirinha.dart';
 
 class CancelConfirmationPage extends StatefulWidget {
   const CancelConfirmationPage({super.key});

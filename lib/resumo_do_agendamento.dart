@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pagina_inicial.dart';
 import 'carteirinha.dart';
-import 'confirmacao_agendamento.dart'; // Importando a tela de confirmação de agendamento
+import 'confirmacao_agendamento.dart';
 import 'confirmacao_cancelamento.dart';
 
 class ResumoDoAgendamento extends StatelessWidget {
@@ -175,7 +175,7 @@ class ResumoDoAgendamento extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const ConfirmacaoAgendamentoPage()), // Tela de confirmação de agendamento
+                        MaterialPageRoute(builder: (context) => const ConfirmacaoAgendamentoPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

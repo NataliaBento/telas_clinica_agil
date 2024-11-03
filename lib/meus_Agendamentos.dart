@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'detalhes_do_agendamento.dart';
 import 'pagina_inicial.dart';
-import 'carteirinha.dart'; // Importando a tela de carteirinha
+import 'carteirinha.dart';
 
 class AppointmentListPage extends StatefulWidget {
   const AppointmentListPage({super.key});
@@ -23,7 +23,7 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
         context,
         MaterialPageRoute(builder: (context) => const PaginaInicial()),
       );
-    } else if (index == 1) { // Redireciona para CarteirinhaPage
+    } else if (index == 1) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const CarteirinhaPage()),

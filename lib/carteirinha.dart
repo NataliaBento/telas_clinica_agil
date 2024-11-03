@@ -79,7 +79,7 @@ class _CarteirinhaPageState extends State<CarteirinhaPage> {
             quarterTurns: 1,
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 1.3,
-              height: MediaQuery.of(context).size.height * 0.6, // Ajuste para aumentar a altura proporcionalmente
+              height: MediaQuery.of(context).size.height * 0.6,
               child: Card(
                 color: const Color(0xFF222083),
                 shape: RoundedRectangleBorder(

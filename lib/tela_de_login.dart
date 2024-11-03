@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pagina_inicial.dart';
-import 'cadastro.dart'; // Importa o arquivo de cadastro
+import 'cadastro.dart';
 
 class TelaDeLogin extends StatefulWidget {
   const TelaDeLogin({super.key});

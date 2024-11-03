@@ -22,7 +22,7 @@ class _ConfirmacaoDeCadastroPageState extends State<ConfirmacaoDeCadastroPage> {
         context,
         MaterialPageRoute(builder: (context) => const PaginaInicial()),
       );
-    } else if (index == 1) { // Redireciona para CarteirinhaPage
+    } else if (index == 1) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const CarteirinhaPage()),
