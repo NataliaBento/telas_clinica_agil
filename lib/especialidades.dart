@@ -1,8 +1,7 @@
-// tela_especialidades.dart
 import 'package:flutter/material.dart';
+import 'escolha_do_medico.dart';
 import 'pagina_inicial.dart';
 import 'carteirinha.dart';
-import 'escolha_do_medico.dart';
 
 class TelaEspecialidades extends StatefulWidget {
   const TelaEspecialidades({super.key});
@@ -99,7 +98,7 @@ class _TelaEspecialidadesState extends State<TelaEspecialidades> {
           children: [
             const Center(
               child: Text(
-                'Escolha a especialidade:',
+                'Especialidades',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -108,8 +107,6 @@ class _TelaEspecialidadesState extends State<TelaEspecialidades> {
               ),
             ),
             const SizedBox(height: 16),
-
-            // Barra de pesquisa
             TextField(
               decoration: InputDecoration(
                 hintText: 'Buscar',
@@ -123,39 +120,16 @@ class _TelaEspecialidadesState extends State<TelaEspecialidades> {
               ),
             ),
             const SizedBox(height: 20),
-
-            // Lista de especialidades
             Expanded(
               child: ListView(
                 children: [
-                  EspecialidadeBar(
-                    nome: 'Clínico Geral',
-                    onTap: () => _navigateToEscolhaDoMedico('Clínico Geral'),
-                  ),
-                  EspecialidadeBar(
-                    nome: 'Neurologista',
-                    onTap: () => _navigateToEscolhaDoMedico('Neurologista'),
-                  ),
-                  EspecialidadeBar(
-                    nome: 'Cardiologista',
-                    onTap: () => _navigateToEscolhaDoMedico('Cardiologista'),
-                  ),
-                  EspecialidadeBar(
-                    nome: 'Endocrinologista',
-                    onTap: () => _navigateToEscolhaDoMedico('Endocrinologista'),
-                  ),
-                  EspecialidadeBar(
-                    nome: 'Pediatra',
-                    onTap: () => _navigateToEscolhaDoMedico('Pediatra'),
-                  ),
-                  EspecialidadeBar(
-                    nome: 'Dermatologista',
-                    onTap: () => _navigateToEscolhaDoMedico('Dermatologista'),
-                  ),
-                  EspecialidadeBar(
-                    nome: 'Ginecologista',
-                    onTap: () => _navigateToEscolhaDoMedico('Ginecologista'),
-                  ),
+                  EspecialidadeBar(nome: 'Clínico Geral', onTap: () => _navigateToEscolhaDoMedico('Clínico Geral')),
+                  EspecialidadeBar(nome: 'Neurologista', onTap: () => _navigateToEscolhaDoMedico('Neurologista')),
+                  EspecialidadeBar(nome: 'Cardiologista', onTap: () => _navigateToEscolhaDoMedico('Cardiologista')),
+                  EspecialidadeBar(nome: 'Endocrinologista', onTap: () => _navigateToEscolhaDoMedico('Endocrinologista')),
+                  EspecialidadeBar(nome: 'Pediatra', onTap: () => _navigateToEscolhaDoMedico('Pediatra')),
+                  EspecialidadeBar(nome: 'Dermatologista', onTap: () => _navigateToEscolhaDoMedico('Dermatologista')),
+                  EspecialidadeBar(nome: 'Ginecologista', onTap: () => _navigateToEscolhaDoMedico('Ginecologista')),
                 ],
               ),
             ),
@@ -164,18 +138,9 @@ class _TelaEspecialidadesState extends State<TelaEspecialidades> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Início',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_membership),
-            label: 'Carteirinha',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
+          BottomNavigationBarItem(icon: Icon(Icons.card_membership), label: 'Carteirinha'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xFF01C3CC),
@@ -187,13 +152,11 @@ class _TelaEspecialidadesState extends State<TelaEspecialidades> {
   }
 }
 
-// Widget para barra de especialidade
 class EspecialidadeBar extends StatelessWidget {
   final String nome;
   final VoidCallback onTap;
 
-  const EspecialidadeBar({Key? key, required this.nome, required this.onTap})
-      : super(key: key);
+  const EspecialidadeBar({Key? key, required this.nome, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -201,22 +164,15 @@ class EspecialidadeBar extends StatelessWidget {
       onTap: onTap,
       child: Center(
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
+          width: MediaQuery.of(context).size.width * 0.85, // Ajuste de largura
           margin: const EdgeInsets.symmetric(vertical: 4),
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
             color: const Color(0xFF2260FF),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
-            child: Text(
-              nome,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            child: Text(nome, style: const TextStyle(fontSize: 18, color: Colors.white)),
           ),
         ),
       ),

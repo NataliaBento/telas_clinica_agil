@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'calendario.dart';
 import 'pagina_inicial.dart';
 import 'carteirinha.dart';
-import 'calendario.dart'; // Import da nova página de calendário
 
 class EscolhaDoMedico extends StatefulWidget {
   final String especialidade;
@@ -33,25 +33,20 @@ class _EscolhaDoMedicoState extends State<EscolhaDoMedico> {
     }
   }
 
+  void _navigateToCalendario(String medicoSelecionado) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CalendarioPage(
+          especialidade: widget.especialidade,
+          medico: medicoSelecionado,
+        ),
+      ),
+    );
+  }
+
   String getTituloEspecialidade() {
-    switch (widget.especialidade) {
-      case 'Clínico Geral':
-        return 'Clínicos Gerais disponíveis';
-      case 'Neurologista':
-        return 'Neurologistas disponíveis';
-      case 'Cardiologista':
-        return 'Cardiologistas disponíveis';
-      case 'Endocrinologista':
-        return 'Endocrinologistas disponíveis';
-      case 'Pediatra':
-        return 'Pediatras disponíveis';
-      case 'Dermatologista':
-        return 'Dermatologistas disponíveis';
-      case 'Ginecologista':
-        return 'Ginecologistas disponíveis';
-      default:
-        return '${widget.especialidade} disponíveis';
-    }
+    return '${widget.especialidade}s disponíveis';
   }
 
   @override
@@ -122,50 +117,28 @@ class _EscolhaDoMedicoState extends State<EscolhaDoMedico> {
               ),
             ),
             const SizedBox(height: 16),
-
-            // Lista de cards de médicos
             Expanded(
               child: ListView(
                 children: [
                   _buildMedicoCard(
-                    nome: "Dr. João Silva",
-                    crm: "12345",
-                    avaliacao: "4.5",
+                    nome: 'Dr. João Silva',
+                    crm: '12345',
+                    onSelect: () => _navigateToCalendario('Dr. João Silva'),
                   ),
                   _buildMedicoCard(
-                    nome: "Dra. Maria Fernandes",
-                    crm: "67890",
-                    avaliacao: "4.8",
+                    nome: 'Dra. Maria Fernandes',
+                    crm: '67890',
+                    onSelect: () => _navigateToCalendario('Dra. Maria Fernandes'),
                   ),
                   _buildMedicoCard(
-                    nome: "Dr. Pedro Santos",
-                    crm: "11223",
-                    avaliacao: "4.6",
+                    nome: 'Dr. Carlos Souza',
+                    crm: '11223',
+                    onSelect: () => _navigateToCalendario('Dr. Carlos Souza'),
                   ),
                   _buildMedicoCard(
-                    nome: "Dra. Ana Oliveira",
-                    crm: "44556",
-                    avaliacao: "4.7",
-                  ),
-                  _buildMedicoCard(
-                    nome: "Dr. Carlos Nunes",
-                    crm: "33445",
-                    avaliacao: "4.3",
-                  ),
-                  _buildMedicoCard(
-                    nome: "Dra. Fernanda Martins",
-                    crm: "55667",
-                    avaliacao: "4.9",
-                  ),
-                  _buildMedicoCard(
-                    nome: "Dr. Rafael Almeida",
-                    crm: "77889",
-                    avaliacao: "4.2",
-                  ),
-                  _buildMedicoCard(
-                    nome: "Dra. Juliana Costa",
-                    crm: "99880",
-                    avaliacao: "4.6",
+                    nome: 'Dra. Ana Oliveira',
+                    crm: '33445',
+                    onSelect: () => _navigateToCalendario('Dra. Ana Oliveira'),
                   ),
                 ],
               ),
@@ -175,18 +148,9 @@ class _EscolhaDoMedicoState extends State<EscolhaDoMedico> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Início',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_membership),
-            label: 'Carteirinha',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
+          BottomNavigationBarItem(icon: Icon(Icons.card_membership), label: 'Carteirinha'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xFF01C3CC),
@@ -197,13 +161,10 @@ class _EscolhaDoMedicoState extends State<EscolhaDoMedico> {
     );
   }
 
-  // Função para criar o card de médico
-  Widget _buildMedicoCard({required String nome, required String crm, required String avaliacao}) {
+  Widget _buildMedicoCard({required String nome, required String crm, required VoidCallback onSelect}) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 4,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -223,18 +184,7 @@ class _EscolhaDoMedicoState extends State<EscolhaDoMedico> {
                   style: const TextStyle(fontSize: 16, color: Colors.black54),
                 ),
                 Text(
-                  "CRM: $crm",
-                  style: const TextStyle(fontSize: 16, color: Colors.black54),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                const Icon(Icons.star, color: Colors.amber, size: 20),
-                const SizedBox(width: 4),
-                Text(
-                  avaliacao,
+                  'CRM: $crm',
                   style: const TextStyle(fontSize: 16, color: Colors.black54),
                 ),
               ],
@@ -242,12 +192,7 @@ class _EscolhaDoMedicoState extends State<EscolhaDoMedico> {
             const SizedBox(height: 16),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CalendarioPage()),
-                  );
-                },
+                onPressed: onSelect,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF222083),
                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),

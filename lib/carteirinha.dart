@@ -36,7 +36,7 @@ class _CarteirinhaPageState extends State<CarteirinhaPage> {
             Container(
               width: 36,
               height: 36,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
@@ -73,84 +73,78 @@ class _CarteirinhaPageState extends State<CarteirinhaPage> {
           ],
         ),
       ),
-      body: Center(
-        child: RotatedBox(
-          quarterTurns: 1, // Card em modo horizontal
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 1.5, // Largura do card
-            height: MediaQuery.of(context).size.height * 0.5, // Altura quase total sem ultrapassar
-            child: Card(
-              color: const Color(0xFF222083),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              elevation: 8,
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Carteirinha de Saúde',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+      body: SingleChildScrollView(
+        child: Center(
+          child: RotatedBox(
+            quarterTurns: 1,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 1.3,
+              height: MediaQuery.of(context).size.height * 0.6, // Ajuste para aumentar a altura proporcionalmente
+              child: Card(
+                color: const Color(0xFF222083),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 8,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Carteirinha de Saúde',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildInfoColumn('Nome', 'João da Silva'),
-                        buildInfoColumn('Sexo', 'Masculino'),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildInfoColumn('Número do Plano', '1234567890'),
-                        buildInfoColumn('Tipo de Plano', 'Premium'),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildInfoColumn('Idade', '35 anos'),
-                        buildInfoColumn('Validade', '12/12/2025'),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        buildInfoColumn('Grupo Sanguíneo', 'O+'),
-                        buildInfoColumn('Data de Emissão', '01/01/2023'),
-                      ],
-                    ),
-                    const Divider(thickness: 1, color: Colors.white54),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.download, color: Colors.white),
-                          onPressed: () {
-                            // Ação para download
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.share, color: Colors.white),
-                          onPressed: () {
-                            // Ação para compartilhar
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildInfoColumn('Nome', 'João da Silva'),
+                          buildInfoColumn('Sexo', 'Masculino'),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildInfoColumn('Número do Plano', '1234567890'),
+                          buildInfoColumn('Tipo de Plano', 'Premium'),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildInfoColumn('Idade', '35 anos'),
+                          buildInfoColumn('Validade', '12/12/2025'),
+                        ],
+                      ),
+                      const Divider(thickness: 1, color: Colors.white54),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.download, color: Colors.white),
+                            onPressed: () {
+                              // Ação para download
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.share, color: Colors.white),
+                            onPressed: () {
+                              // Ação para compartilhar
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

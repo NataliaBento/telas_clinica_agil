@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'resumo_do_agendamento.dart';
+import 'pagina_inicial.dart';
+import 'carteirinha.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'carteirinha.dart';
-import 'pagina_inicial.dart';
 
 class CalendarioPage extends StatefulWidget {
-  const CalendarioPage({super.key});
+  final String especialidade;
+  final String medico;
+
+  const CalendarioPage({super.key, required this.especialidade, required this.medico});
 
   @override
   State<CalendarioPage> createState() => _CalendarioPageState();
@@ -17,14 +21,21 @@ class _CalendarioPageState extends State<CalendarioPage> {
   String? _selectedTime;
   int _selectedIndex = 0;
 
-  List<String> horarios = [
-    "08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"
-  ];
+  List<String> horarios = ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00"];
+
+  @override
+  void initState() {
+    super.initState();
+    initializeDateFormatting('pt_BR', null).then((_) {
+      setState(() {});  // Rebuild the widget after locale data is loaded
+    });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
     if (index == 0) {
       Navigator.pushReplacement(
         context,
@@ -38,15 +49,23 @@ class _CalendarioPageState extends State<CalendarioPage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    initializeDateFormatting('pt_BR', null);
+  void _navigateToResumoDoAgendamento() {
+    if (_selectedDay != null && _selectedTime != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResumoDoAgendamento(
+            especialidade: widget.especialidade,
+            medico: widget.medico,
+            data: _selectedDay!,
+            hora: _selectedTime!,
+          ),
+        ),
+      );
+    }
   }
 
-  bool isSelectable(DateTime day) {
-    return day.isAfter(DateTime.now().subtract(const Duration(days: 1)));
-  }
+  bool isSelectable(DateTime day) => day.isAfter(DateTime.now().subtract(const Duration(days: 1)));
 
   @override
   Widget build(BuildContext context) {
@@ -104,12 +123,14 @@ class _CalendarioPageState extends State<CalendarioPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Agendamento:',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+            const Center(
+              child: Text(
+                'Agendamento',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
             ),
             const SizedBox(height: 16),
@@ -133,59 +154,45 @@ class _CalendarioPageState extends State<CalendarioPage> {
                   shape: BoxShape.circle,
                 ),
                 selectedDecoration: BoxDecoration(
-                  color: _selectedDay != null ? const Color(0xFF8DDFA1) : const Color(0xFF222083),
+                  color: const Color(0xFF8DDFA1),
                   shape: BoxShape.circle,
                 ),
               ),
+              availableCalendarFormats: const {CalendarFormat.month: 'Mês'},
             ),
             const SizedBox(height: 16),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    const Text(
-                      "Selecione o horário:",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: horarios.map((horario) {
-                        return ChoiceChip(
-                          label: Text(horario),
-                          selected: _selectedTime == horario,
-                          onSelected: (selected) {
-                            setState(() {
-                              _selectedTime = selected ? horario : null;
-                            });
-                          },
-                          selectedColor: const Color(0xFF222083),
-                          backgroundColor: Colors.grey[200],
-                          labelStyle: TextStyle(
-                            color: _selectedTime == horario ? Colors.white : Colors.black,
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ],
+            const Center(
+              child: Text(
+                'Escolha o seu horário',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
                 ),
               ),
             ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: horarios.map((hora) {
+                return ChoiceChip(
+                  label: Text(hora),
+                  selected: _selectedTime == hora,
+                  onSelected: (selected) {
+                    setState(() => _selectedTime = selected ? hora : null);
+                  },
+                  selectedColor: const Color(0xFF222083),
+                  backgroundColor: Colors.grey[200],
+                  labelStyle: TextStyle(
+                    color: _selectedTime == hora ? Colors.white : Colors.black,
+                  ),
+                );
+              }).toList(),
+            ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
-                // Ação para o botão 'Seguir'
-              },
+              onPressed: _selectedDay != null && _selectedTime != null ? _navigateToResumoDoAgendamento : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF222083),
                 padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 12),

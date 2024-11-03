@@ -25,7 +25,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       curve: Curves.easeOut,
     );
 
-    // Navega para a tela de login após um atraso
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
@@ -43,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF222083), // Cor de fundo
+      backgroundColor: const Color(0xFF222083),
       body: Center(
         child: ScaleTransition(
           scale: _animation,
@@ -52,8 +51,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             children: [
               Image.asset(
                 'assets/images/logo_de_entrada.png',
-                width: MediaQuery.of(context).size.width * 0.9, // Tamanho inicial
-                height: MediaQuery.of(context).size.width * 0.9, // Tamanho inicial
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.width * 0.9,
                 fit: BoxFit.contain,
               ),
               const SizedBox(height: 16),
