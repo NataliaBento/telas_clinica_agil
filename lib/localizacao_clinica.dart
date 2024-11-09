@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pagina_inicial.dart';
 import 'carteirinha.dart';
+import 'especialidades.dart';
 
 class LocalizacaoClinica extends StatefulWidget {
   const LocalizacaoClinica({super.key});
@@ -201,63 +202,71 @@ class _LocalizacaoClinicaState extends State<LocalizacaoClinica> {
                   itemBuilder: (context, index) {
                     var clinica = clinicas[index];
 
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              clinica['nome'],
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'Endereço: ${clinica['endereco']}',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.black54,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Text(
-                              'Telefone: ${clinica['telefone']}',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.black54,
-                              ),
-                            ),
-                            const Spacer(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '⭐ ${clinica['avaliacao']}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black54,
-                                  ),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const EspecialidadesPage()),
+                        );
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                clinica['nome'],
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                IconButton(
-                                  icon: Icon(
-                                    clinica['salvo'] ? Icons.bookmark : Icons.bookmark_border,
-                                    color: clinica['salvo'] ? const Color(0xFF222083) : Colors.grey,
-                                  ),
-                                  onPressed: () => _toggleSalvo(_selectedBairro!, index),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Endereço: ${clinica['endereco']}',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black54,
                                 ),
-                              ],
-                            ),
-                          ],
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                'Telefone: ${clinica['telefone']}',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '⭐ ${clinica['avaliacao']}',
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      clinica['salvo'] ? Icons.bookmark : Icons.bookmark_border,
+                                      color: clinica['salvo'] ? const Color(0xFF222083) : Colors.grey,
+                                    ),
+                                    onPressed: () => _toggleSalvo(_selectedBairro!, index),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

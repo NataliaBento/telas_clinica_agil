@@ -3,14 +3,14 @@ import 'escolha_do_medico.dart';
 import 'pagina_inicial.dart';
 import 'carteirinha.dart';
 
-class TelaEspecialidades extends StatefulWidget {
-  const TelaEspecialidades({super.key});
+class EspecialidadesPage extends StatefulWidget { // Nome atualizado para corresponder ao redirecionamento
+  const EspecialidadesPage({super.key});
 
   @override
-  State<TelaEspecialidades> createState() => _TelaEspecialidadesState();
+  State<EspecialidadesPage> createState() => _EspecialidadesPageState();
 }
 
-class _TelaEspecialidadesState extends State<TelaEspecialidades> {
+class _EspecialidadesPageState extends State<EspecialidadesPage> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -164,7 +164,7 @@ class EspecialidadeBar extends StatelessWidget {
       onTap: onTap,
       child: Center(
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.85, // Ajuste de largura
+          width: MediaQuery.of(context).size.width * 0.85,
           margin: const EdgeInsets.symmetric(vertical: 4),
           padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
