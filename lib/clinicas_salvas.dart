@@ -31,12 +31,12 @@ class _ClinicasSalvasState extends State<ClinicasSalvas> {
   }
 
   final List<Map<String, dynamic>> clinicasSalvas = [
-    {'nome': 'Clínica Curado Vida', 'endereco': 'Rua A, 100', 'avaliacao': '4.7'},
-    {'nome': 'Curado Saúde', 'endereco': 'Av. B, 200', 'avaliacao': '4.5'},
-    {'nome': 'Clínica Água Viva', 'endereco': 'Rua C, 300', 'avaliacao': '4.6'},
-    {'nome': 'Água Fria Saúde', 'endereco': 'Av. D, 400', 'avaliacao': '4.4'},
-    {'nome': 'Clínica Mustardinha Saúde', 'endereco': 'Rua E, 500', 'avaliacao': '4.8'},
-    {'nome': 'Saúde e Vida Mustardinha', 'endereco': 'Av. F, 600', 'avaliacao': '4.3'},
+    {'nome': 'Clínica Curado Vida', 'endereco': 'Rua A, 100', 'telefone': '(81) 1234-5678', 'avaliacao': '4.7'},
+    {'nome': 'Curado Saúde', 'endereco': 'Av. B, 200', 'telefone': '(81) 8765-4321', 'avaliacao': '4.5'},
+    {'nome': 'Clínica Água Viva', 'endereco': 'Rua C, 300', 'telefone': '(81) 5555-6666', 'avaliacao': '4.6'},
+    {'nome': 'Água Fria Saúde', 'endereco': 'Av. D, 400', 'telefone': '(81) 7777-8888', 'avaliacao': '4.4'},
+    {'nome': 'Clínica Mustardinha Saúde', 'endereco': 'Rua E, 500', 'telefone': '(81) 9999-0000', 'avaliacao': '4.8'},
+    {'nome': 'Saúde e Vida Mustardinha', 'endereco': 'Av. F, 600', 'telefone': '(81) 3333-4444', 'avaliacao': '4.3'},
   ];
 
   @override
@@ -112,7 +112,7 @@ class _ClinicasSalvasState extends State<ClinicasSalvas> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  mainAxisExtent: 180,
+                  mainAxisExtent: 200,
                 ),
                 itemCount: clinicasSalvas.length,
                 itemBuilder: (context, index) {
@@ -154,6 +154,14 @@ class _ClinicasSalvasState extends State<ClinicasSalvas> {
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Telefone: ${clinica['telefone']}',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black54,
+                            ),
                           ),
                           const Spacer(),
                           Row(
