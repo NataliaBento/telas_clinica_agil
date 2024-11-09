@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'meus_Agendamentos.dart';
 import 'carteirinha.dart';
-import 'especialidades.dart';
+import 'localizacao_clinica.dart';
+import 'clinicas_salvas.dart';
 
 class PaginaInicial extends StatefulWidget {
   const PaginaInicial({super.key});
@@ -18,7 +19,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
       _selectedIndex = index;
     });
 
-    if (index == 1) { // Índice 1 é o "Carteirinha"
+    if (index == 1) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const CarteirinhaPage()),
@@ -103,7 +104,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const TelaEspecialidades(),
+                          builder: (context) => const LocalizacaoClinica(),
                         ),
                       );
                     },
@@ -125,7 +126,16 @@ class _PaginaInicialState extends State<PaginaInicial> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   buildCard('Meus Exames', Icons.medical_services),
-                  buildCard('Benefícios', Icons.card_giftcard),
+                  buildCard(
+                    'Clínicas Salvas', // Mudança de 'Benefícios' para 'Clínicas Salvas'
+                    Icons.bookmark,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ClinicasSalvas()), // Direciona para a nova tela
+                      );
+                    },
+                  ),
                 ],
               ),
             ],
