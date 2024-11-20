@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'tela_de_login.dart';
 import 'meus_Agendamentos.dart';
 import 'carteirinha.dart';
 import 'localizacao_clinica.dart';
@@ -49,34 +50,57 @@ class _PaginaInicialState extends State<PaginaInicial> {
                       height: 40,
                     ),
                     Row(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
                           icon: const Icon(Icons.notifications),
                           color: Colors.white,
-                          onPressed: () {},
+                          onPressed: () {
+                            // Adicione funcionalidade de notificação aqui
+                          },
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.settings),
-                          color: Colors.white,
-                          onPressed: () {},
+                        Column(
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.exit_to_app),
+                              color: Colors.white,
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const TelaDeLogin(),
+                                  ),
+                                );
+                              },
+                            ),
+                            const Text(
+                              'Sair',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8), // Reduzido para evitar overflow
                 const Center(
-                  child: Text(
-                    'Nome do Usuário',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  child: Flexible(
+                    child: Text(
+                      'Nome do Usuário',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8), // Ajustado para evitar overflow
                 const Divider(
                   color: Colors.white54,
                   thickness: 1,
@@ -127,12 +151,12 @@ class _PaginaInicialState extends State<PaginaInicial> {
                 children: [
                   buildCard('Meus Exames', Icons.medical_services),
                   buildCard(
-                    'Clínicas Salvas', // Mudança de 'Benefícios' para 'Clínicas Salvas'
+                    'Clínicas Salvas',
                     Icons.bookmark,
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const ClinicasSalvas()), // Direciona para a nova tela
+                        MaterialPageRoute(builder: (context) => const ClinicasSalvas()),
                       );
                     },
                   ),
